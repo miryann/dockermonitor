@@ -29,7 +29,7 @@ for i in $(docker ps -a --format "{{.Names}}"); do
             echo "Container" ${i} "is registered"
         else
             echo "Container is not registered"
-            (sudo ${AGENTBINPATH}DefaultClient enroll-device --template=$TEMPLATE --name=T-DockerContainer-${i} --parent-id=$DEVICEID) | grep "Device Id:" | head -1 > ${AGENTDATAPATH}${i}.container
+            (sudo ${AGENTBINPATH}DefaultClient enroll-device --template=$TEMPLATE --name=T-DockerContainer${i} --parent-id=$DEVICEID) | grep "Device Id:" | head -1 > ${AGENTDATAPATH}${i}.container
             RESULT=$?
                 if [ $RESULT -eq 0 ]; then
                     echo "Container " ${i} " registered successfully" 
