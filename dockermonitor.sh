@@ -15,7 +15,7 @@
 ################################################################################
 AGENTBINPATH="/opt/vmware/iotc-agent/bin/"
 AGENTDATAPATH="/opt/vmware/iotc-agent/data/data/"
-DEVICEID=$(cat ${AGENTDATAPATH}deviceIds.data | awk -F '^' '{print $1}')
+DEVICEID=$(${AGENTBINPATH}DefaultClient get-devices | head -n1 | awk '{print $1}')
 TEMPLATE=T-DockerContainer
 
 #Start While Loop
