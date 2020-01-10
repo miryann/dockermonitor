@@ -7,7 +7,8 @@
 
 AGENTBINPATH="/opt/vmware/iotc-agent/bin/"
 AGENTDATAPATH="/opt/vmware/iotc-agent/data/data/"
-DEVICEID=$(${AGENTBINPATH}DefaultClient get-devices | head -n2 | awk 'NR>1 {split($0,a); print a[1]}')
+DEVICEID=$(${AGENTBINPATH}DefaultClient get-devices | head -n2 | awk 'NR>1 {split($0,a); print a[1]}') &
+wait
 TEMPLATE=shelf_container
 now=$(date +"%T")
 	cd /tmp/dockermonitor/
