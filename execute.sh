@@ -6,6 +6,7 @@
 # Last Update: 10/Jan/20
 
 now=$(date +"%T")
+	cd /tmp/dockermonitor/
  	chmod 777 *.sh
 	echo "$now: Pulse campaign successfully loaded"|tee -a campaign.log|wall -n
 	echo "$now: Configuring dockermonitor service"|tee -a campaign.log|wall -n
