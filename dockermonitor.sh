@@ -7,16 +7,16 @@
 # |_______/ \______/   \______||__|\__\ |_______|| _| `._____|   |__|  |__|  \______/  |__| \__| |__|     |__|      \______/  | _| `._____|
 
 # Author: Ken Osborn
-# Version: 1.1
-# Last Update: 06-Jun-19
+# Version: 1.2
+# Last Update: 01-Jan-20
 
 ################################################################################
 ## Set Variables
 ################################################################################
 AGENTBINPATH="/opt/vmware/iotc-agent/bin/"
 AGENTDATAPATH="/opt/vmware/iotc-agent/data/data/"
-DEVICEID=$(${AGENTBINPATH}DefaultClient get-devices | head -n1 | awk '{print $1}')
-TEMPLATE=T-DockerContainer
+DEVICEID=$(${AGENTBINPATH}DefaultClient get-devices | head -n2 | awk 'NR>1 {split($0,a); print a[1]}')
+TEMPLATE=shelf_container
 
 #Start While Loop
 while true; do
@@ -47,7 +47,7 @@ for a in $(ls $AGENTDATAPATH | grep .container | awk -F '.' '{print $1}'); do
         if docker ps -a --format "{{.Names}}" | grep "$a"; then
             echo "Container" ${a} "is present - do not unregister"
         else
-            echo "Container is not present - unregister"
+            echo "Container" ${a} " is not present - unregister"
             sudo ${AGENTBINPATH}DefaultClient unenroll --device-id=$(cat ${AGENTDATAPATH}${a}.container | grep "Device Id:" | awk -F ': ' '{print $2}')
             RESULT=$?
                 if [ $RESULT -eq 0 ]; then
