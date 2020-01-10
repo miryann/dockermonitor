@@ -27,8 +27,5 @@ sleep 2
 	docker run -td --name alpine alpine|tee -a campaign.log|wall -n
 	echo "$now: Docker container alpine alpine running"|tee -a campaign.log|wall -n
 sleep 2
-echo "$now: Starting dockermonitor service"|tee -a campaign.log|wall -n
-service dockermonitor start |wall -n
-	echo "$now: dockermonitor service started"|tee -a campaign.log|wall -n
  	echo "$now: Pulse campaign successfully completed"|tee -a campaign.log|wall -n
 sleep 2
