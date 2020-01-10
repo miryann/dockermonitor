@@ -12,6 +12,7 @@ now=$(date +"%T")
 	mkdir /opt/dockermonitor
 	cp dockermonitor.sh /opt/dockermonitor
 	chmod +x /opt/dockermonitor/dockermonitor.sh
+	chmod +x runonce.sh
 	cp dockermonitor.service /etc/systemd/system
 	chmod 644 /etc/systemd/system/dockermonitor.service
 	systemctl daemon-reload
